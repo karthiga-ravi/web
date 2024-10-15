@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="todoApp">
+<head>
+  <title>ToDo App</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="app.js"></script>
+</head>
+<body ng-controller="TodoController">
+
+  <h1>ToDo App</h1>
+
+  <!-- Input to add a new task -->
+  <input type="text" ng-model="taskTitle" placeholder="Add a new task" />
+  <button ng-click="addTask()">Add Task</button>
+
+  <!-- Display the task list -->
+  <h2>Tasks</h2>
+  <input type="text" ng-model="search" placeholder="Search tasks" />
+  <ul>
+    <li ng-repeat="task in tasks | filter:search">
+      <!-- Checkbox to mark the task as completed -->
+      <input type="checkbox" ng-model="task.completed" ng-change="updateTask(task)" />
+      {{ task.title }}
+      <!-- Delete button -->
+      <button ng-click="deleteTask(task.id)">Delete</button>
+    </li>
+  </ul>
+
+</body>
+</html>
